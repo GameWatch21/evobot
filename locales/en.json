@@ -36,9 +36,9 @@
   "nowplaying": {
     "description": "Show now playing song",
     "errorNotQueue": "There is nothing playing.",
-    "embedTitle": "Now playing",
+    "embedTitle": "🎶Now playing🎶",
     "live": " ◉ LIVE",
-    "timeRemaining": "Time Remaining: {time}"
+    "timeRemaining": "What? | Time Remaining: {time}"
   },
   "pause": {
     "description": "Pause the currently playing music",
@@ -50,10 +50,10 @@
     "result": "📈 Average ping to API: {ping} ms"
   },
   "play": {
-    "description": "Plays audio from YouTube or Soundcloud",
+    "description": "Plays audio from YouTube",
     "errorNotChannel": "You need to join a voice channel first!",
     "errorNotInSameChannel": "You must be in the same channel as {user}",
-    "usageReply": "Usage: {prefix}play <YouTube URL | Video Name | Soundcloud URL>",
+    "usageReply": "Usage: {prefix}play <YouTube URL | Video Name>",
     "missingPermissionConnect": "Cannot connect to voice channel, missing permissions",
     "missingPermissionSpeak": "I cannot speak in this voice channel, make sure I have the proper permissions!",
     "queueAdded": "✅ **{title}** has been added to the queue by <@{author}>",
@@ -70,7 +70,7 @@
     "increasedVolume": "<@{author}> 🔊 increased the volume, the volume is now {volume}%",
     "loopSong": "<@{author}> Loop is now {loop}",
     "stopSong": "<@{author}> ⏹ stopped the music!",
-    "leaveChannel": "Leaving voice channel...",
+    "leaveChannel": "Leaving voice channel :>",
     "songNotFound": "Audio Not Found"
   },
   "playlist": {
@@ -142,8 +142,8 @@
     "result": "<@{author}> ⏹ stopped the music!"
   },
   "uptime": {
-    "description": "Check the uptime",
-    "result": "Uptime: `{days} day(s),{hours} hours, {minutes} minutes, {seconds} seconds`"
+    "description": "Check the Bot Information",
+    "result": "`{days} day(s), {hours} hours, {minutes} minutes, {seconds} seconds`"
   },
   "volume": {
     "description": "Change volume of currently playing music",
@@ -161,6 +161,12 @@
     "disabled": "**disabled**",
     "errorNotChannel": "You need to join a voice channel first!",
     "cooldownMessage": "please wait {time} more second(s) before reusing the `{name}` command.",
-    "errorCommand": "There was an error executing that command."
+    "errorCommand": "There was an error executing that command.",
+    "errorCommend": "There was an error executing that command.",
+    "errorDJOnly": "Only users with the {DJ_ROLE} role can access this feature!"
+  },
+  "leave": {
+    "description": "Make the Bot leave the Voice Channel",
+    "leave_message": "Leaving the channel :>"
   }
 }

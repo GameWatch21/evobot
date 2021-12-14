@@ -23,6 +23,7 @@ module.exports = {
       .setTitle(i18n.__mf("lyrics.embedTitle", { title: title }))
       .setDescription(lyrics)
       .setColor("#F8AA2A")
+      .setFooter('Only for those who forgot')
       .setTimestamp();
 
     if (lyricsEmbed.description.length >= 2048)

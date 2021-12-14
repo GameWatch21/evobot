@@ -1,6 +1,14 @@
 /**
  * Module Imports
  */
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const port = 8080;
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
 const { Client, Collection } = require("discord.js");
 const { readdirSync } = require("fs");
 const { join } = require("path");
@@ -23,8 +31,8 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
  * Client Events
  */
 client.on("ready", () => {
-  console.log(`${client.user.username} ready!`);
-  client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "LISTENING" });
+  console.log(`${client.user.username} goes brrrrrrrr`);
+  client.user.setActivity(`${PREFIX}help and Sub to Blood`, { type: "STREAMING" });
 });
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);
@@ -42,12 +50,14 @@ client.on("message", async (message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
 
+  
   const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(PREFIX)})\\s*`);
   if (!prefixRegex.test(message.content)) return;
 
   const [, matchedPrefix] = message.content.match(prefixRegex);
 
   const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
+  const guild = require('discord.js');
   const commandName = args.shift().toLowerCase();
 
   const command =
@@ -55,11 +65,14 @@ client.on("message", async (message) => {
     client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
   if (!command) return;
-
+  
+  /* if(!isDJOnly(command.name,message.member,message.guild)) return message.reply(i18n.__mf("common.errorDJOnly",{DJ_ROLE:DJ_ROLE}));
+  */
+  
   if (!cooldowns.has(command.name)) {
     cooldowns.set(command.name, new Collection());
   }
-
+  
   const now = Date.now();
   const timestamps = cooldowns.get(command.name);
   const cooldownAmount = (command.cooldown || 1) * 1000;

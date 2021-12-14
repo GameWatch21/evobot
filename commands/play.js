@@ -2,10 +2,13 @@ const i18n = require("../util/i18n");
 const { play } = require("../include/play");
 const ytdl = require("ytdl-core");
 const YouTubeAPI = require("simple-youtube-api");
+const YTKeyless = require("youtube-search-without-api-key");
 const scdl = require("soundcloud-downloader").default;
 const https = require("https");
 const { YOUTUBE_API_KEY, SOUNDCLOUD_CLIENT_ID, DEFAULT_VOLUME } = require("../util/Util");
 const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
+const { MessageEmbed } = require('discord.js');
+
 
 module.exports = {
   name: "play",
@@ -84,7 +87,9 @@ module.exports = {
         song = {
           title: songInfo.videoDetails.title,
           url: songInfo.videoDetails.video_url,
-          duration: songInfo.videoDetails.lengthSeconds
+          duration: songInfo.videoDetails.lengthSeconds,
+          author: songInfo.videoDetails.author,
+          image: songInfo.videoDetails.thumbnails
         };
       } catch (error) {
         console.error(error);
@@ -104,8 +109,10 @@ module.exports = {
       }
     } else {
       try {
+        /*const results = await YTKeyless.search(search);
+        */
         const results = await youtube.searchVideos(search, 1, { part: "snippet" });
-
+        
         if (!results.length) {
           message.reply(i18n.__("play.songNotFound")).catch(console.error);
           return;
@@ -115,7 +122,9 @@ module.exports = {
         song = {
           title: songInfo.videoDetails.title,
           url: songInfo.videoDetails.video_url,
-          duration: songInfo.videoDetails.lengthSeconds
+          duration: songInfo.videoDetails.lengthSeconds,
+          author: songInfo.videoDetails.author,
+          image: songInfo.videoDetails.thumbnails
         };
       } catch (error) {
         console.error(error);

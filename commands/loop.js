@@ -6,7 +6,9 @@ module.exports = {
   aliases: ["l"],
   description: i18n.__("loop.description"),
   execute(message) {
+    const { channel } = message.member.voice;
     const queue = message.client.queue.get(message.guild.id);
+    if (!channel) return message.reply(i18n.__("play.errorNotChannel")).catch(console.error);
     if (!queue) return message.reply(i18n.__("loop.errorNotQueue")).catch(console.error);
     if (!canModifyQueue(message.member)) return i18n.__("common.errorNotChannel");
 

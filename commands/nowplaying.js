@@ -15,7 +15,7 @@ module.exports = {
 
     let nowPlaying = new MessageEmbed()
       .setTitle(i18n.__("nowplaying.embedTitle"))
-      .setDescription(`${song.title}\n${song.url}`)
+      .setDescription(`[${song.title}](${song.url})`)
       .setColor("#F8AA2A")
       .setAuthor(message.client.user.username);
 
